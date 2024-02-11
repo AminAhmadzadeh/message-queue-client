@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package web;
+
+// The message class with two attributes
+message Message {
+string key = 1;
+string value = 2;
+int32 success = 3;
+}
+
+message PushResponse {
+string value = 1;
+}
+
+message PullRequest {
+}
+
+// The service definition with one method
+service PullService {
+// Sends a pull request and returns a message
+rpc Pull (PullRequest) returns (Message) {}
+rpc Push (Message) returns (PushResponse) {}
+rpc FindMaster (PullRequest) returns (PushResponse) {}
+}
+
+
+
